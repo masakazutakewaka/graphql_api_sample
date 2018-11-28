@@ -8,7 +8,7 @@ module Types
     end
 
     def user(id:)
-      User.find(id)
+      User.where(id: id).joins(:snaps)
     end
   end
 end
