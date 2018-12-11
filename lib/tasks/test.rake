@@ -7,10 +7,14 @@ namespace :batch do
     id
     name
     sex
-    snaps
+    snaps {
+      id
+      userId
+    }
   }
 }
     EOS
-    puts BackOfficeSchema.execute(query)['data']
+    binding.pry
+    puts BackOfficeSchema.execute(query)
   end
 end
