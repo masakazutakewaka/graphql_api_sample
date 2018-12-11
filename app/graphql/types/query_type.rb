@@ -1,14 +1,14 @@
 module Types
   class QueryType < Types::BaseObject
-    # Add root-level fields here.
-    # They will be entry points for queries on your schema.
+    field_class Fields::Guardable
 
     field :user, Types::UserType, null: true do
       argument :id, Integer, required: true
+      guard ->(obj, args, ctx) { !ctx[:current_user].nil? }
     end
 
     def user(id:)
-      User.where(id: id).joins(:snaps)
+      User.find(id)
     end
   end
 end

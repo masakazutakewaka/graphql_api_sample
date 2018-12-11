@@ -1,7 +1,6 @@
 class BackOfficeSchema < GraphQL::Schema
-
-  mutation(Types::MutationType)
   query(Types::QueryType)
-  # GraphQL::Batch setup:
+  mutation(Types::MutationType)
   use GraphQL::Batch
+  use GraphQL::Guard
 end
