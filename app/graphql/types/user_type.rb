@@ -1,8 +1,12 @@
 module Types
   class UserType < Types::BaseObject
     field :id, Integer, null: false
-    field :name, String, null: true
-    field :sex, Types::SexType, null: true
-    field :snaps, Types::SnapType.connection_type, null: true
+    #field :password, String, null: false
+    field :sex, String, null: false
+    field :snaps, [Types::SnapType], null: true
+  end
+
+  def snaps(user_id)
+    SnapLoader.for(Snap).load_many(object.id)
   end
 end
